@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="img-container">
+        <img
+          class="img-mobile"
+          src="./assets/images/illustration-sign-up-mobile.svg"
+          alt=""
+        />
+        <img
+          class="img-desktop"
+          src="./assets/images/illustration-sign-up-desktop.svg"
+          alt=""
+        />
+      </div>
+      <div class="content-container">
+        <div class="hero-container">
+          <h1 class="title">Stay updated!</h1>
+          <p class="description">
+            Join 60,000+ product managers receiving monthly updates on:
+          </p>
+          <ul class="list">
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="list element" />
+              <p>Product discovery and building what matters</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="list element" />
+              <p>Measuring to ensure updates are a success</p>
+            </li>
+            <li>
+              <img src="./assets/images/icon-list.svg" alt="list element" />
+              <p>And much more!</p>
+            </li>
+          </ul>
+        </div>
+        <div class="form-container">
+          <form>
+            <div class="fld-container">
+              <div class="fld-top">
+                <label for="email">Email address</label>
+                <p class="fld-top__error">Valid email required</p>
+              </div>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="fld"
+                placeholder="email@company.com"
+              />
+              <!-- fld-error class would be added to input when email is invalid -->
+            </div>
+
+            <button class="btn btn-subscribe">
+              Subscribe to monthly newsletter
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="success-container">
+        <div class="content">
+          <img class="img-success" src="./assets/images/icon-list.svg" alt="" />
+          <h1 class="title">Thanks for subscribing!</h1>
+          <p class="description">
+            A confirmation email has been sent to
+            <span class="email-success">ash@loremcompany.com</span>. Please open
+            it and click the button inside to confirm your subscription.
+          </p>
+        </div>
+
+        <button class="btn btn-dismiss">Dismiss message</button>
+      </div>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by Mohamed Nassime Chehidi.
+      </div>
+    </div>
+
+  
+
+    <script>
+      document
+        .querySelector(".btn-subscribe")
+        .addEventListener("click", function (e) {
+          e.preventDefault(); // prevent the form from submitting
+          var emailInput = document.querySelector("#email");
+          var email = emailInput.value;
+          var errorText = document.querySelector(".fld-top__error");
+          // basic email validation
+          if (!email || !email.includes("@")) {
+            errorText.style.display = "block";
+            emailInput.classList.add("fld-error"); // add fld-error class to input
+            return;
+          } else {
+            errorText.style.display = "none";
+            emailInput.classList.remove("fld-error"); // remove fld-error class from input
+          }
+          // hide .content-container and .img-container
+          document.querySelector(".content-container").style.display = "none";
+          document.querySelector(".img-container").style.display = "none";
+          // show .success-container with email-success as submitted email
+          document.querySelector(".success-container").style.display = "flex";
+          document.querySelector(".email-success").textContent = email;
+        });
+      // when btn-dismiss is clicked, hide .success-container and show .content-container and .img-container
+      document
+        .querySelector(".btn-dismiss")
+        .addEventListener("click", function () {
+          document.querySelector(".success-container").style.display = "none";
+          document.querySelector(".content-container").style.display = "flex";
+          document.querySelector(".img-container").style.display = "flex";
+        });
+    </script>
+  </body>
+</html>
